@@ -17,16 +17,17 @@ export class AppComponent implements OnInit {
   coords: Coordinates;
 
   ngOnInit(){
-    // this.watchPosition().subscribe( coords =>
-    //   this.coords = coords
-    // );
+    this.watchPosition().subscribe( coords =>
+      this.coords = coords
+
+    );
   }
 
-  // watchPosition(): Observable<any> {
-  //   const watch = bindCallback(Geolocation.watchPosition)({});
+  watchPosition(): Observable<any> {
+    const watch = bindCallback(Geolocation.watchPosition)({});
 
-  //   return watch.pipe(map(pos => pos.coords));
-  // }
+    return watch.pipe(map(pos => pos[0]));
+  }
 
   showAlert() {
     const lat = this.coords.latitude;
